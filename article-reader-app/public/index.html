@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Article Reader</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="reader-panel" aria-labelledby="app-title">
+        <div class="masthead">
+          <div>
+            <p class="eyebrow">URL to voice</p>
+            <h1 id="app-title">Article Reader</h1>
+          </div>
+          <div class="status-pill" id="voice-status">Loading voices</div>
+        </div>
+
+        <form class="url-form" id="article-form">
+          <label for="article-url">Article URL</label>
+          <div class="url-row">
+            <input id="article-url" name="url" type="url" placeholder="https://example.com/article" autocomplete="url" required>
+            <button class="primary-button" type="submit" title="Fetch article">
+              <span aria-hidden="true">+</span>
+              Fetch
+            </button>
+          </div>
+        </form>
+
+        <div class="controls" aria-label="Playback controls">
+          <label>
+            Voice
+            <select id="voice-select"></select>
+          </label>
+
+          <label>
+            Volume <output id="volume-output">80%</output>
+            <input id="volume-slider" type="range" min="0" max="1" step="0.05" value="0.8">
+          </label>
+
+          <label>
+            Speed <output id="speed-output">1.0x</output>
+            <input id="speed-slider" type="range" min="0.6" max="1.8" step="0.1" value="1">
+          </label>
+        </div>
+
+        <div class="transport" aria-label="Reading controls">
+          <button id="play-button" type="button" title="Play article">
+            <span aria-hidden="true">▶</span>
+            Play
+          </button>
+          <button id="pause-button" type="button" title="Pause reading">
+            <span aria-hidden="true">Ⅱ</span>
+            Pause
+          </button>
+          <button id="stop-button" type="button" title="Stop reading">
+            <span aria-hidden="true">■</span>
+            Stop
+          </button>
+        </div>
+
+        <div class="message" id="message" role="status" aria-live="polite"></div>
+
+        <div class="study-tools" aria-labelledby="tools-title">
+          <div>
+            <p class="eyebrow">Study tools</p>
+            <h2 id="tools-title">Summary, points, quiz</h2>
+          </div>
+          <div class="tool-buttons">
+            <button type="button" data-tool="summary" title="Summarize article">
+              <span aria-hidden="true">≡</span>
+              Summary
+            </button>
+            <button type="button" data-tool="points" title="Show key points">
+              <span aria-hidden="true">•</span>
+              Points
+            </button>
+            <button type="button" data-tool="quiz" title="Quiz me">
+              <span aria-hidden="true">?</span>
+              Quiz Me
+            </button>
+          </div>
+          <div class="insight-output" id="insight-output">Load an article to use the study tools.</div>
+          <button class="check-button" id="check-quiz-button" type="button" hidden>Check Answers</button>
+        </div>
+      </section>
+
+      <section class="article-view" aria-labelledby="article-title">
+        <div class="article-meta">
+          <div>
+            <p class="eyebrow" id="source-label">No article loaded</p>
+            <h2 id="article-title">Paste a URL to pull in the article text.</h2>
+          </div>
+          <div class="word-count" id="word-count">0 words</div>
+        </div>
+        <textarea id="article-text" spellcheck="false" placeholder="Extracted article text will appear here. You can edit it before pressing Play."></textarea>
+      </section>
+    </main>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
